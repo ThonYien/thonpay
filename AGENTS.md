@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+Keep the transfer prototype browser-only and in-memory until secure account storage and licensed payment rails are explicitly approved; label all simulated transfers and sample rates so the demo cannot be mistaken for a real financial service.
