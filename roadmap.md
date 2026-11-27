@@ -2,6 +2,7 @@
 
 - [ ] Build a responsive, simulation-only Kenya-to-South-Sudan transfer experience.
 - [ ] Include calculator, recipient and payout choices, confirmation, tracking, and history.
-- [ ] Make the demo boundary explicit: no actual transfers, live rates, identity collection, or saved credentials.
-- [ ] Add profile-backed sign-up and sign-in after connecting secure account storage; do not collect identity documents yet.
+- [ ] Keep all transfers simulated, all rates illustrative, and transfer records in the current browser session; never collect identity documents.
+- [x] Connect private profile storage for full name and phone number; each account can access only its own profile.
+- [ ] Implement phone-only sign-up and sign-in with no email requirement, after verifying SMS configuration.
 - [ ] Verify the finished page, route metadata, tests, and preview build; commit the work.

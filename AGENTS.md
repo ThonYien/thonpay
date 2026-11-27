@@ -29,4 +29,4 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
-Keep the transfer prototype browser-only and in-memory until secure account storage and licensed payment rails are explicitly approved; label all simulated transfers and sample rates so the demo cannot be mistaken for a real financial service.
+Keep transfer records simulated and in-memory until licensed payment rails are configured; store approved profile fields in Lovable Cloud with per-user RLS, and label sample rates and transfers so the prototype cannot be mistaken for a real financial service.
