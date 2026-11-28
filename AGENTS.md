@@ -30,3 +30,5 @@ use the editor.
 <!-- LOVABLE:END -->
 
 Keep transfer records simulated and in-memory until licensed payment rails are configured; store approved profile fields in Lovable Cloud with per-user RLS, and label sample rates and transfers so the prototype cannot be mistaken for a real financial service.
+
+Implement phone OTP in a dedicated authentication feature; read account profiles through the browser client under owner-only RLS, while leaving transfer simulations client-only.

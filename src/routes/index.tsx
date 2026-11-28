@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ThonPayApp } from "@/features/transfers/thonpay-app";
+import { PhoneAuthGate } from "@/features/auth/phone-auth";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,5 +24,5 @@ export const Route = createFileRoute("/")({
 });
 
 function ThonPayPage() {
-  return <ThonPayApp />;
+  return <PhoneAuthGate />;
 }

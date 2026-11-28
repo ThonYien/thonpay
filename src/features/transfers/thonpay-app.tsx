@@ -9,11 +9,13 @@ import {
   FileClock,
   House,
   Landmark,
+  LogOut,
   MapPin,
   ShieldCheck,
   Smartphone,
   Send,
   TriangleAlert,
+  UserRound,
   Wallet,
   type LucideIcon,
 } from "lucide-react";
@@ -213,7 +215,13 @@ function TransferList({
   );
 }
 
-export function ThonPayApp() {
+export function ThonPayApp({
+  accountName,
+  onSignOut,
+}: {
+  accountName: string;
+  onSignOut: () => Promise<void>;
+}) {
   const [view, setView] = useState<AppView>("overview");
   const [step, setStep] = useState<"details" | "review">("details");
   const [sendAmount, setSendAmount] = useState("5000");
@@ -224,6 +232,7 @@ export function ThonPayApp() {
   const [transfers, setTransfers] = useState<TransferRecord[]>([]);
   const [referenceCount, setReferenceCount] = useState(1);
   const [receipt, setReceipt] = useState<TransferRecord | null>(null);
+  const [accountError, setAccountError] = useState("");
 
   const quote = calculateDemoTransferQuote(Number(sendAmount));
   const amountIsValid = Number.isFinite(Number(sendAmount)) && Number(sendAmount) > 0;
@@ -264,6 +273,15 @@ export function ThonPayApp() {
     setSendAmount("5000");
     setStep("details");
     setView("send");
+  }
+
+  async function signOut() {
+    setAccountError("");
+    try {
+      await onSignOut();
+    } catch {
+      setAccountError("We could not sign you out. Please try again.");
+    }
   }
 
   const title = pageTitle(view, step);
@@ -310,6 +328,24 @@ export function ThonPayApp() {
               <span>Example figures are always labelled.</span>
             </div>
           </div>
+          <div className="th-account-row">
+            <div className="th-account-avatar" aria-hidden="true"><UserRound /></div>
+            <div className="th-account-copy">
+              <span>Signed in as</span>
+              <strong>{accountName}</strong>
+            </div>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="th-account-signout"
+              aria-label="Sign out of ThonPay"
+              title="Sign out"
+              onClick={() => void signOut()}
+            >
+              <LogOut aria-hidden="true" />
+            </Button>
+          </div>
           <span className="th-build-label">TRANSFER PROTOTYPE · 2026</span>
         </div>
       </aside>
@@ -322,13 +358,25 @@ export function ThonPayApp() {
             </div>
             <span className="th-brand-name">ThonPay</span>
           </div>
-          <Badge variant="outline" className="th-mobile-demo-badge">
-            Demo
-          </Badge>
+          <div className="th-mobile-header-actions">
+            <Badge variant="outline" className="th-mobile-demo-badge">Demo</Badge>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="th-mobile-signout"
+              aria-label="Sign out of ThonPay"
+              title="Sign out"
+              onClick={() => void signOut()}
+            >
+              <LogOut aria-hidden="true" />
+            </Button>
+          </div>
         </header>
 
         <main className="th-main-content">
           <PrototypeNotice />
+          {accountError && <p className="th-account-error" role="alert">{accountError}</p>}
 
           <header className="th-page-heading">
             <div>
